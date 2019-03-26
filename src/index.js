@@ -18,7 +18,7 @@ const DECREMENT_ACTION = {
 };
 
 const reducer = (prevState = initialState, action) => {
-  console.log("Action received", action);
+  //console.log("Action received", action);
   switch (action.type) {
     case "INCREMENT":
       return { ...prevState, count: prevState.count + 1 };
@@ -31,13 +31,14 @@ const reducer = (prevState = initialState, action) => {
 };
 
 const store = createStore(reducer, applyMiddleware(log));
+store.subscribe(() => console.log("Store changed", store.getState()));
 
-console.log("Initial state", store.getState());
+//console.log("Initial state", store.getState());
 store.dispatch(INCREMENT_ACTION);
 store.dispatch(INCREMENT_ACTION);
-console.log("After increments", store.getState());
+//console.log("After increments", store.getState());
 store.dispatch(DECREMENT_ACTION);
-console.log("After decrement", store.getState());
+//console.log("After decrement", store.getState());
 
 function App() {
   return (
